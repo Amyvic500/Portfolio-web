@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Projects | Victoria Amarachi Philip</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+  <style>
+    body {
+      background-color: #f8f9fa;
+    }
+    header {
+      background: #212529;
+      color: white;
+    }
+    .profile-pic {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 3px solid #fff;
+    }
+    .card {
+      border: none;
+      transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+    }
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+    }
+    .filter-btns {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+    .filter-btns button {
+      margin: 0 0.5rem;
+    }
+    .back-link {
+      text-decoration: none;
+      color: #0d6efd;
+      font-weight: 500;
+    }
+    .back-link:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="text-center py-4">
+    <img src="1691446996009.jpg" alt="Profile Picture" class="profile-pic mb-2">
+    <h2 class="mb-0">Victoria Amarachi Philip</h2>
+    <p class="text-light">IT Administrator ➜ Application Support/Specialist ➜ Data Base Administrator ➜ DevOps</p>
+    <a href="index.html" class="back-link">← Back to Home</a>
+  </header>
+
+  <!-- Projects Section -->
+  <section class="container my-5">
+    <h2 class="text-center mb-4">My Projects</h2>
+
+    <!-- Filter Buttons -->
+    <div class="filter-btns">
+      <button class="btn btn-primary active" data-filter="all">All</button>
+      <button class="btn btn-outline-primary" data-filter="network">IT & Network</button>
+      <button class="btn btn-outline-primary" data-filter="database">Database</button>
+      <button class="btn btn-outline-primary" data-filter="automation">Automation</button>
+      <button class="btn btn-outline-primary" data-filter="web">Web Apps</button>
+      <button class="btn btn-outline-primary" data-filter="dashboard">Dashboards</button>
+    </div>
+
+    <div class="row" id="project-list">
+
+      <!-- Project 1 -->
+      <div class="col-md-6 mb-4 project-card" data-category="network">
+        <div class="card shadow-sm h-100">
+          <div class="card-body">
+            <h5 class="card-title">IT Infrastructure Setup & Network Deployment</h5>
+            <p class="card-text">Coordinated installation of 68 network cameras and multi-site infrastructure.</p>
+            <p><strong>Tools/Skills:</strong> Networking, CCTV, LAN/WAN</p>
+            <p><strong>Outcome:</strong> Achieved 99.9% uptime and enhanced reliability.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Project 2 -->
+      <div class="col-md-6 mb-4 project-card" data-category="database">
+        <div class="card shadow-sm h-100">
+          <div class="card-body">
+            <h5 class="card-title">Automated Database Backup Solution</h5>
+            <p class="card-text">Implemented SQL Server automated backups for critical business data.</p>
+            <p><strong>Tools/Skills:</strong> MSSQL, SQL Server Agent</p>
+            <p><strong>Outcome:</strong> Boosted uptime by 35%, reduced downtime risk.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Project 3 -->
+      <div class="col-md-6 mb-4 project-card" data-category="automation">
+        <div class="card shadow-sm h-100">
+          <div class="card-body">
+            <h5 class="card-title">Inventory Tracking Automation</h5>
+            <p class="card-text">Built an automated inventory system in Google Sheets with triggers.</p>
+            <p><strong>Tools/Skills:</strong> Google Sheets, Reporting</p>
+            <p><strong>Outcome:</strong> Increased efficiency by 40%, reduced errors.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Project 4 -->
+      <div class="col-md-6 mb-4 project-card" data-category="web">
+        <div class="card shadow-sm h-100">
+          <div class="card-body">
+            <h5 class="card-title">Web Application Support & Optimization</h5>
+            <p class="card-text">Supported PHP/Laravel apps, resolved issues, and improved performance.</p>
+            <p><strong>Tools/Skills:</strong> PHP, Laravel, MySQL, CSS</p>
+            <p><strong>Outcome:</strong> Resolved 85% of issues, ensuring stability.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Project 5 -->
+      <div class="col-md-6 mb-4 project-card" data-category="dashboard">
+        <div class="card shadow-sm h-100">
+          <div class="card-body">
+            <h5 class="card-title">Business Data Dashboard</h5>
+            <p class="card-text">Created dashboards for performance, sales, and inventory tracking.</p>
+            <p><strong>Tools/Skills:</strong> Excel, Pivot Tables, Charts</p>
+            <p><strong>Outcome:</strong> Helped management make data-driven decisions.</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-dark text-white text-center py-3">
+    <p class="mb-0">&copy; 2025 Victoria Amarachi Philip. All rights reserved.</p>
+  </footer>
+
+  <!-- Script for Filtering -->
+  <script>
+    const buttons = document.querySelectorAll('.filter-btns button');
+    const cards = document.querySelectorAll('.project-card');
+
+    buttons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        // Remove active class from all buttons
+        buttons.forEach(b => b.classList.remove('btn-primary', 'active'));
+        buttons.forEach(b => b.classList.add('btn-outline-primary'));
+
+        // Highlight selected button
+        btn.classList.remove('btn-outline-primary');
+        btn.classList.add('btn-primary', 'active');
+
+        const filter = btn.getAttribute('data-filter');
+
+        cards.forEach(card => {
+          if (filter === 'all' || card.getAttribute('data-category') === filter) {
+            card.style.display = 'block';
+          } else {
+            card.style.display = 'none';
+          }
+        });
+      });
+    });
+  </script>
+
+</body>
+</html>
