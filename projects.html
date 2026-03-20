@@ -63,29 +63,27 @@
             <div class="project-icon" style="background: linear-gradient(135deg,#00c9a7,#0066cc)">
               <i class="fas fa-hospital-user"></i>
             </div>
-            <div class="project-category-tag">Healthcare Tech</div>
+            <div class="project-category-tag">Healthcare Tech · DevOps</div>
           </div>
           <h3 class="project-title">CareQueue</h3>
-          <p class="project-subtitle">Healthcare Queue Management System</p>
-          <p class="project-desc">A comprehensive digital queue management platform designed for healthcare facilities. Streamlines patient flow, reduces waiting times, and improves overall care delivery with real-time queue monitoring, appointment scheduling, and multi-department support.</p>
+          <p class="project-subtitle">Healthcare Queue Management System — DevOps Engineer</p>
+          <p class="project-desc">A microservices-based healthcare queue management platform. My role as DevOps Engineer covered full containerisation, orchestration, reverse proxy configuration, environment management, and deployment pipeline across staging and production environments.</p>
           <div class="project-stack">
-            <span>PHP</span><span>Laravel</span><span>MySQL</span><span>JavaScript</span><span>Bootstrap</span><span>REST API</span>
+            <span>Docker</span><span>Docker Compose</span><span>Nginx</span><span>Flask</span><span>React</span><span>FastAPI</span><span>PostgreSQL</span><span>Redis</span><span>Celery</span><span>AWS EC2</span><span>Render.com</span><span>Twilio</span>
           </div>
+          <h5 style="color:var(--gold);font-family:var(--font-mono);font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;margin:.8rem 0 .6rem">DevOps Contributions</h5>
           <div class="project-outcomes">
-            <div class="outcome-item"><i class="fas fa-check"></i> 60% reduction in patient wait times</div>
-            <div class="outcome-item"><i class="fas fa-check"></i> Real-time SMS/email notifications</div>
-            <div class="outcome-item"><i class="fas fa-check"></i> Multi-department queue management</div>
-            <div class="outcome-item"><i class="fas fa-check"></i> Admin analytics dashboard</div>
-          </div>
-          <div class="project-media-section" id="carequeue-media">
-            <div class="media-placeholder" onclick="openMediaModal('carequeue')">
-              <i class="fas fa-play-circle"></i>
-              <span>View Screenshots & Demo</span>
-            </div>
+            <div class="outcome-item"><i class="fab fa-docker"></i> Wrote 4 Dockerfiles — Flask/Gunicorn, React/Nginx multi-stage, FastAPI &amp; dev variants</div>
+            <div class="outcome-item"><i class="fas fa-layer-group"></i> Orchestrated 6-container stack with Docker Compose (Frontend, Backend, AI, Celery, PostgreSQL, Redis)</div>
+            <div class="outcome-item"><i class="fas fa-server"></i> Configured Nginx reverse proxy routing <code style="background:var(--mid);padding:1px 4px;border-radius:2px;font-family:var(--font-mono);font-size:.8em">/api/</code> to backend with WebSocket upgrade headers</div>
+            <div class="outcome-item"><i class="fas fa-database"></i> Set up PostgreSQL health checks &amp; Redis auth for Celery async SMS task queuing via Twilio</div>
+            <div class="outcome-item"><i class="fas fa-code-branch"></i> Built dev/production Docker Compose override split with hot reload volumes</div>
+            <div class="outcome-item"><i class="fas fa-cloud"></i> Deployed to Render.com (staging) and AWS EC2 (production)</div>
+            <div class="outcome-item"><i class="fas fa-shield-halved"></i> Implemented RBAC, NDPR compliance &amp; automated vulnerability scanning</div>
           </div>
           <div class="project-links">
-            <a href="#" class="project-link"><i class="fab fa-github"></i> Code</a>
-            <a href="#" class="project-link primary"><i class="fas fa-external-link-alt"></i> Live Demo</a>
+            <a href="https://github.com/Amyvic500/Portfolio-web" class="project-link" target="_blank"><i class="fab fa-github"></i> Code</a>
+            <a href="https://nexus-carequeue-backend.onrender.com" class="project-link primary" target="_blank"><i class="fas fa-external-link-alt"></i> Live Backend</a>
           </div>
         </div>
 

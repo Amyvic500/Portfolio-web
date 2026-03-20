@@ -181,55 +181,58 @@
         <div class="featured-content">
           <div class="featured-info">
             <h3>CareQueue — Healthcare Queue Management System</h3>
-            <p class="featured-desc">A comprehensive digital queue management platform designed for healthcare facilities to streamline patient flow, reduce waiting times, and improve overall care delivery. Built to handle high-volume patient registration, appointment scheduling, and real-time queue monitoring.</p>
+            <p class="featured-desc">A microservices-based healthcare queue management platform built to digitise and streamline patient flow in public health clinics. The system handles real-time queue management, AI-powered wait time predictions, SMS notifications via Twilio, and a staff admin dashboard — deployed across staging (Render.com) and production (AWS EC2) environments.</p>
             <div class="featured-meta">
               <div class="meta-item">
                 <span class="meta-label">Category</span>
-                <span class="meta-value">Web Application / Healthcare Tech</span>
+                <span class="meta-value">Healthcare Tech / Microservices Platform</span>
               </div>
               <div class="meta-item">
-                <span class="meta-label">Role</span>
-                <span class="meta-value">Application Support / System Design</span>
+                <span class="meta-label">My Role</span>
+                <span class="meta-value">DevOps Engineer</span>
               </div>
               <div class="meta-item">
                 <span class="meta-label">Stack</span>
-                <span class="meta-value">PHP · Laravel · MySQL · JavaScript · Bootstrap</span>
+                <span class="meta-value">Docker · Docker Compose · Nginx · Flask · React · PostgreSQL · Redis · Celery · AWS EC2 · Render.com</span>
+              </div>
+              <div class="meta-item">
+                <span class="meta-label">Live Backend</span>
+                <span class="meta-value">nexus-carequeue-backend.onrender.com</span>
               </div>
             </div>
+
+            <h4 style="color:var(--gold);font-family:var(--font-mono);font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;margin-bottom:.9rem;margin-top:1.4rem">What I Did</h4>
             <div class="featured-outcomes">
-              <div class="outcome"><i class="fas fa-clock"></i> Reduced average patient wait time by <strong>60%</strong></div>
-              <div class="outcome"><i class="fas fa-users"></i> Supports multi-department queue management</div>
-              <div class="outcome"><i class="fas fa-mobile-screen"></i> Real-time SMS/email notifications to patients</div>
-              <div class="outcome"><i class="fas fa-chart-bar"></i> Admin dashboard with live analytics & reporting</div>
+              <div class="outcome"><i class="fab fa-docker"></i> Wrote <strong>4 Dockerfiles</strong> — Flask/Gunicorn backend, React/Nginx multi-stage frontend, FastAPI AI service &amp; dev variants</div>
+              <div class="outcome"><i class="fas fa-layer-group"></i> Orchestrated <strong>6 containers</strong> with Docker Compose — Frontend, Backend, Celery Worker, AI Service, PostgreSQL &amp; Redis</div>
+              <div class="outcome"><i class="fas fa-server"></i> Configured <strong>Nginx reverse proxy</strong> inside the frontend container routing <code>/api/</code> calls to the backend with WebSocket upgrade support</div>
+              <div class="outcome"><i class="fas fa-database"></i> Set up <strong>PostgreSQL health checks</strong> ensuring dependent services only start after the database is ready</div>
+              <div class="outcome"><i class="fas fa-envelope"></i> Wired <strong>Redis + Celery</strong> for async SMS notification task queuing via Twilio integration</div>
+              <div class="outcome"><i class="fas fa-code-branch"></i> Built <strong>dev/production environment split</strong> using Docker Compose overrides with hot reload volumes for local development</div>
+              <div class="outcome"><i class="fas fa-cloud"></i> Managed <strong>two deployment environments</strong> — Render.com (staging) and AWS EC2 (production)</div>
+              <div class="outcome"><i class="fas fa-shield-halved"></i> Implemented <strong>RBAC, NDPR compliance</strong> &amp; automated vulnerability scanning across the stack</div>
             </div>
-            <a href="projects.html#carequeue" class="btn-primary">View Full Details</a>
+            <a href="projects.html#carequeue" class="btn-primary" style="margin-top:.5rem">View Full Details</a>
           </div>
           <div class="featured-visual">
             <div class="project-mockup">
               <div class="mockup-bar"><span></span><span></span><span></span></div>
               <div class="mockup-content">
-                <div class="mockup-header">CareQueue Dashboard</div>
-                <div class="mockup-stats">
-                  <div class="m-stat"><div class="m-num">42</div><div class="m-lbl">Waiting</div></div>
-                  <div class="m-stat active"><div class="m-num">8</div><div class="m-lbl">In Progress</div></div>
-                  <div class="m-stat"><div class="m-num">127</div><div class="m-lbl">Served Today</div></div>
-                </div>
+                <div class="mockup-header">Docker Compose Stack</div>
                 <div class="mockup-queue">
-                  <div class="q-item">
-                    <span class="q-num">Q-001</span>
-                    <span class="q-name">Patient Check-in</span>
-                    <span class="q-status serving">Serving</span>
-                  </div>
-                  <div class="q-item">
-                    <span class="q-num">Q-002</span>
-                    <span class="q-name">Consultation</span>
-                    <span class="q-status waiting">Waiting</span>
-                  </div>
-                  <div class="q-item">
-                    <span class="q-num">Q-003</span>
-                    <span class="q-name">Lab Test</span>
-                    <span class="q-status waiting">Waiting</span>
-                  </div>
+                  <div class="q-item"><span class="q-num" style="min-width:80px">frontend</span><span class="q-name">React · Nginx :3000</span><span class="q-status serving">Running</span></div>
+                  <div class="q-item"><span class="q-num" style="min-width:80px">backend</span><span class="q-name">Flask · Gunicorn :5000</span><span class="q-status serving">Running</span></div>
+                  <div class="q-item"><span class="q-num" style="min-width:80px">ai-service</span><span class="q-name">FastAPI · Uvicorn :8000</span><span class="q-status serving">Running</span></div>
+                  <div class="q-item"><span class="q-num" style="min-width:80px">celery</span><span class="q-name">Worker · SMS via Twilio</span><span class="q-status serving">Running</span></div>
+                  <div class="q-item"><span class="q-num" style="min-width:80px">db</span><span class="q-name">PostgreSQL 16 :5432</span><span class="q-status serving">Healthy</span></div>
+                  <div class="q-item"><span class="q-num" style="min-width:80px">redis</span><span class="q-name">Redis 7 · Auth :6379</span><span class="q-status serving">Running</span></div>
+                </div>
+                <div style="margin-top:.8rem;padding:.6rem;background:var(--dark-2);border-radius:var(--radius);font-family:var(--font-mono);font-size:.65rem;color:var(--accent)">
+                  $ docker compose up<br/>
+                  <span style="color:#888">✔ carequeue-db      Healthy</span><br/>
+                  <span style="color:#888">✔ carequeue-backend  Started</span><br/>
+                  <span style="color:#888">✔ carequeue-frontend Started</span><br/>
+                  <span style="color:var(--gold)">✔ All 6 containers running</span>
                 </div>
               </div>
             </div>
