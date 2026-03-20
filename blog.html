@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Blog & Insights | Victoria Amarachi Philip</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600&family=Space+Mono:wght@400;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+
+  <nav class="navbar" id="navbar">
+    <div class="nav-brand"><a href="index.html" class="brand-initials">VAP</a></div>
+    <button class="nav-toggle" id="navToggle"><span></span><span></span><span></span></button>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="index.html" class="nav-link">Home</a></li>
+      <li><a href="index.html#about" class="nav-link">About</a></li>
+      <li><a href="projects.html" class="nav-link">Projects</a></li>
+      <li><a href="media.html" class="nav-link">Media</a></li>
+      <li><a href="index.html#cv" class="nav-link">CV</a></li>
+      <li><a href="index.html#learning" class="nav-link">Learning</a></li>
+      <li><a href="index.html#testimonials" class="nav-link">Reviews</a></li>
+      <li><a href="blog.html" class="nav-link active">Blog</a></li>
+      <li><a href="index.html#services" class="nav-link">Services</a></li>
+      <li><a href="index.html#contact" class="nav-link">Contact</a></li>
+    </ul>
+  </nav>
+
+  <div class="page-hero">
+    <div class="page-hero-inner">
+      <div class="section-label light">Articles &amp; Insights</div>
+      <h1 class="page-hero-title">Blog &amp; <em>Writing</em></h1>
+      <p class="page-hero-sub">My thoughts on DevOps, IT, career transitions, tech in Africa — plus a good laugh and a dose of inspiration when you need it.</p>
+    </div>
+  </div>
+
+  <section class="section" id="blog-main">
+    <div class="section-inner">
+
+      <!-- Search + Filter -->
+      <div class="blog-controls">
+        <div class="blog-search-wrap">
+          <i class="fas fa-search"></i>
+          <input type="text" id="blogSearch" placeholder="Search articles..." oninput="filterBlogPosts()"/>
+        </div>
+        <div class="filter-bar" style="margin:0">
+          <button class="filter-btn active" data-filter="all" onclick="filterBlogByTag(this)">All</button>
+          <button class="filter-btn" data-filter="devops" onclick="filterBlogByTag(this)">DevOps</button>
+          <button class="filter-btn" data-filter="database" onclick="filterBlogByTag(this)">Database</button>
+          <button class="filter-btn" data-filter="career" onclick="filterBlogByTag(this)">Career</button>
+          <button class="filter-btn" data-filter="automation" onclick="filterBlogByTag(this)">Automation</button>
+          <button class="filter-btn" data-filter="it" onclick="filterBlogByTag(this)">IT Admin</button>
+          <button class="filter-btn" data-filter="fun" onclick="filterBlogByTag(this)">😄 Fun &amp; Jokes</button>
+          <button class="filter-btn" data-filter="inspiration" onclick="filterBlogByTag(this)">✨ Inspiration</button>
+        </div>
+      </div>
+
+      <!-- Featured Post -->
+      <div class="blog-featured" id="blogFeatured" data-tags="devops career">
+        <div class="blog-featured-meta">
+          <span class="blog-tag devops">DevOps</span>
+          <span class="blog-tag career">Career</span>
+          <span class="blog-date"><i class="fas fa-calendar-alt"></i> January 2025</span>
+          <span class="blog-read"><i class="fas fa-clock"></i> 6 min read</span>
+        </div>
+        <h2 class="blog-featured-title">From IT Admin to DevOps: My Honest Transition Story</h2>
+        <p class="blog-featured-excerpt">Many people ask me how I went from managing physical servers and helpdesk tickets to learning Docker, CI/CD pipelines, and cloud infrastructure. The truth is it wasn't a straight line — it was a series of small deliberate steps, late nights of studying, and moments of doubt I had to push through. Here's what really happened and what I'd tell anyone considering the same path...</p>
+        <div class="blog-featured-footer">
+          <div class="blog-author">
+            <img src="1691446996009.jpg" alt="Victoria" class="blog-author-img" onerror="this.style.display='none'"/>
+            <span>Victoria Amarachi Philip</span>
+          </div>
+          <button class="btn-primary blog-read-btn" onclick="openBlogPost('featured')">
+            Read Article <i class="fas fa-arrow-right"></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- Blog Grid -->
+      <div class="blog-grid" id="blogGrid">
+
+        <article class="blog-card" data-tags="database it">
+          <div class="blog-card-header" style="background:linear-gradient(135deg,#6a11cb,#2575fc)">
+            <i class="fas fa-database blog-card-icon"></i>
+          </div>
+          <div class="blog-card-body">
+            <div class="blog-card-meta">
+              <span class="blog-tag database">Database</span>
+              <span class="blog-date-sm">Nov 2024</span>
+            </div>
+            <h3>5 SQL Server Backup Strategies Every DBA Should Know</h3>
+            <p>After implementing automated backups that increased system uptime by 35%, I compiled the strategies that actually work in production environments — not just in theory.</p>
+            <div class="blog-card-footer">
+              <span class="read-time"><i class="fas fa-clock"></i> 5 min</span>
+              <button class="blog-read-link" onclick="openBlogPost('sql-backup')">Read More <i class="fas fa-arrow-right"></i></button>
+            </div>
+          </div>
+        </article>
+
+        <article class="blog-card" data-tags="automation it">
+          <div class="blog-card-header" style="background:linear-gradient(135deg,#11998e,#38ef7d)">
+            <i class="fas fa-robot blog-card-icon"></i>
+          </div>
+          <div class="blog-card-body">
+            <div class="blog-card-meta">
+              <span class="blog-tag automation">Automation</span>
+              <span class="blog-date-sm">Oct 2024</span>
+            </div>
+            <h3>How I Automated Inventory Tracking with Google Sheets (No Code Required)</h3>
+            <p>A practical guide to Google Apps Script triggers and formulas that turned a 3-hour manual process into an automatic real-time system — and how you can do it too.</p>
+            <div class="blog-card-footer">
+              <span class="read-time"><i class="fas fa-clock"></i> 7 min</span>
+              <button class="blog-read-link" onclick="openBlogPost('sheets-automation')">Read More <i class="fas fa-arrow-right"></i></button>
+            </div>
+          </div>
+        </article>
+
+        <article class="blog-card" data-tags="devops">
+          <div class="blog-card-header" style="background:linear-gradient(135deg,#f7971e,#ffd200)">
+            <i class="fab fa-docker blog-card-icon"></i>
+          </div>
+          <div class="blog-card-body">
+            <div class="blog-card-meta">
+              <span class="blog-tag devops">DevOps</span>
+              <span class="blog-date-sm">Dec 2024</span>
+            </div>
+            <h3>Docker for Beginners: Containerising Your First PHP Application</h3>
+            <p>Docker felt intimidating at first. After weeks of hands-on learning, I broke down the exact steps I used to containerise a Laravel application from scratch, with real commands you can copy.</p>
+            <div class="blog-card-footer">
+              <span class="read-time"><i class="fas fa-clock"></i> 8 min</span>
+              <button class="blog-read-link" onclick="openBlogPost('docker-php')">Read More <i class="fas fa-arrow-right"></i></button>
+            </div>
+          </div>
+        </article>
+
+        <article class="blog-card" data-tags="career">
+          <div class="blog-card-header" style="background:linear-gradient(135deg,#f953c6,#b91d73)">
+            <i class="fas fa-user-graduate blog-card-icon"></i>
+          </div>
+          <div class="blog-card-body">
+            <div class="blog-card-meta">
+              <span class="blog-tag career">Career</span>
+              <span class="blog-date-sm">Sep 2024</span>
+            </div>
+            <h3>Breaking Into Tech in Nigeria: What Nobody Tells You</h3>
+            <p>From an Accounting degree to IT roles with no direct path — the real challenges, surprising advantages, and the mindset shifts that made the difference in building a tech career locally.</p>
+            <div class="blog-card-footer">
+              <span class="read-time"><i class="fas fa-clock"></i> 6 min</span>
+              <button class="blog-read-link" onclick="openBlogPost('nigeria-tech')">Read More <i class="fas fa-arrow-right"></i></button>
+            </div>
+          </div>
+        </article>
+
+        <article class="blog-card" data-tags="it database">
+          <div class="blog-card-header" style="background:linear-gradient(135deg,#fc4a1a,#f7b733)">
+            <i class="fas fa-shield-halved blog-card-icon"></i>
+          </div>
+          <div class="blog-card-body">
+            <div class="blog-card-meta">
+              <span class="blog-tag it">IT Admin</span>
+              <span class="blog-date-sm">Aug 2024</span>
+            </div>
+            <h3>Service Desk Lessons: 10 Things That Make IT Support Exceptional</h3>
+            <p>After resolving hundreds of user-reported issues and cutting resolution times by 40%, here are the practices — technical and human — that separate average IT support from truly excellent service.</p>
+            <div class="blog-card-footer">
+              <span class="read-time"><i class="fas fa-clock"></i> 4 min</span>
+              <button class="blog-read-link" onclick="openBlogPost('service-desk')">Read More <i class="fas fa-arrow-right"></i></button>
+            </div>
+          </div>
+        </article>
+
+        <article class="blog-card" data-tags="devops automation">
+          <div class="blog-card-header" style="background:linear-gradient(135deg,#4776e6,#8e54e9)">
+            <i class="fas fa-code-branch blog-card-icon"></i>
+          </div>
+          <div class="blog-card-body">
+            <div class="blog-card-meta">
+              <span class="blog-tag devops">DevOps</span>
+              <span class="blog-date-sm">Jul 2024</span>
+            </div>
+            <h3>Setting Up Your First GitHub Actions CI/CD Pipeline: A Step-by-Step Guide</h3>
+            <p>The guide I wish I had when I started. From creating your first workflow YAML to deploying to a server automatically — explained clearly without assuming prior CI/CD knowledge.</p>
+            <div class="blog-card-footer">
+              <span class="read-time"><i class="fas fa-clock"></i> 10 min</span>
+              <button class="blog-read-link" onclick="openBlogPost('github-actions')">Read More <i class="fas fa-arrow-right"></i></button>
+            </div>
+          </div>
+        </article>
+
+        <!-- ── FUN & JOKES ARTICLES ── -->
+        <article class="blog-card" data-tags="fun">
+          <div class="blog-card-header blog-fun-header" style="background:linear-gradient(135deg,#ff6b6b,#feca57)">
+            <i class="fas fa-laugh-squint blog-card-icon"></i>
+          </div>
+          <div class="blog-card-body">
+            <div class="blog-card-meta">
+              <span class="blog-tag fun">Fun &amp; Jokes</span>
+              <span class="blog-date-sm">Feb 2025</span>
+            </div>
+            <h3>You Know You're an IT Person When… (25 Signs That Are Too Real)</h3>
+            <p>From restarting your router before calling anyone, to explaining to your family why "turning it off and on again" is actual technical advice — this one's for every IT soul who's been there.</p>
+            <div class="blog-card-footer">
+              <span class="read-time"><i class="fas fa-clock"></i> 3 min</span>
+              <button class="blog-read-link" onclick="openBlogPost('it-signs')">Read More <i class="fas fa-arrow-right"></i></button>
+            </div>
+          </div>
+        </article>
+
+        <article class="blog-card" data-tags="fun">
+          <div class="blog-card-header" style="background:linear-gradient(135deg,#a29bfe,#fd79a8)">
+            <i class="fas fa-bug blog-card-icon"></i>
+          </div>
+          <div class="blog-card-body">
+            <div class="blog-card-meta">
+              <span class="blog-tag fun">Fun &amp; Jokes</span>
+              <span class="blog-date-sm">Mar 2025</span>
+            </div>
+            <h3>The 7 Stages of Debugging: A Comedy in One Act</h3>
+            <p>Stage 1: "It works on my machine." Stage 7: Questioning every decision you've ever made. A painfully accurate guide to what goes through every developer and sysadmin's head when the logs say nothing useful.</p>
+            <div class="blog-card-footer">
+              <span class="read-time"><i class="fas fa-clock"></i> 4 min</span>
+              <button class="blog-read-link" onclick="openBlogPost('debugging-stages')">Read More <i class="fas fa-arrow-right"></i></button>
+            </div>
+          </div>
+        </article>
+
+        <article class="blog-card" data-tags="fun career">
+          <div class="blog-card-header" style="background:linear-gradient(135deg,#00b09b,#96c93d)">
+            <i class="fas fa-comments blog-card-icon"></i>
+          </div>
+          <div class="blog-card-body">
+            <div class="blog-card-meta">
+              <span class="blog-tag fun">Fun &amp; Jokes</span>
+              <span class="blog-date-sm">Jan 2025</span>
+            </div>
+            <h3>Tech Job Titles Translated: What They Actually Mean</h3>
+            <p>"Passionate self-starter" = you'll be working alone. "Fast-paced environment" = organised chaos. A lighthearted glossary of IT job descriptions decoded from corporate speak into plain English.</p>
+            <div class="blog-card-footer">
+              <span class="read-time"><i class="fas fa-clock"></i> 3 min</span>
+              <button class="blog-read-link" onclick="openBlogPost('job-titles')">Read More <i class="fas fa-arrow-right"></i></button>
+            </div>
+          </div>
+        </article>
+
+        <article class="blog-card" data-tags="fun devops">
+          <div class="blog-card-header" style="background:linear-gradient(135deg,#f7971e,#f44369)">
+            <i class="fas fa-fire blog-card-icon"></i>
+          </div>
+          <div class="blog-card-body">
+            <div class="blog-card-meta">
+              <span class="blog-tag fun">Fun &amp; Jokes</span>
+              <span class="blog-date-sm">Dec 2024</span>
+            </div>
+            <h3>A DevOps Engineer's Friday Afternoon: A Timeline</h3>
+            <p>3:00 PM — just one small config change. 3:05 PM — production is on fire. 5:30 PM — still on the call. A hilariously relatable minute-by-minute breakdown of every on-call engineer's nightmare.</p>
+            <div class="blog-card-footer">
+              <span class="read-time"><i class="fas fa-clock"></i> 3 min</span>
+              <button class="blog-read-link" onclick="openBlogPost('friday-devops')">Read More <i class="fas fa-arrow-right"></i></button>
+            </div>
+          </div>
+        </article>
+
+        <!-- ── INSPIRATION & MOTIVATION ARTICLES ── -->
+        <article class="blog-card" data-tags="inspiration career">
+          <div class="blog-card-header blog-inspo-header" style="background:linear-gradient(135deg,#c9a84c,#e8c96b)">
+            <i class="fas fa-sun blog-card-icon" style="color:#0d0d0d"></i>
+          </div>
+          <div class="blog-card-body">
+            <div class="blog-card-meta">
+              <span class="blog-tag inspiration">Inspiration</span>
+              <span class="blog-date-sm">Mar 2025</span>
+            </div>
+            <h3>You Are Not Behind. You Are Right On Time.</h3>
+            <p>In a world where LinkedIn makes everyone else's career look like a highlight reel, it's easy to feel like you're falling behind. Here's a reminder — and the perspective shift that changed everything for me.</p>
+            <div class="blog-card-footer">
+              <span class="read-time"><i class="fas fa-clock"></i> 4 min</span>
+              <button class="blog-read-link" onclick="openBlogPost('not-behind')">Read More <i class="fas fa-arrow-right"></i></button>
+            </div>
+          </div>
+        </article>
+
+        <article class="blog-card" data-tags="inspiration career">
+          <div class="blog-card-header" style="background:linear-gradient(135deg,#667eea,#764ba2)">
+            <i class="fas fa-rocket blog-card-icon"></i>
+          </div>
+          <div class="blog-card-body">
+            <div class="blog-card-meta">
+              <span class="blog-tag inspiration">Inspiration</span>
+              <span class="blog-date-sm">Feb 2025</span>
+            </div>
+            <h3>What Imposter Syndrome Actually Means (It's Not What You Think)</h3>
+            <p>Every time I felt like a fraud in a room full of "real" tech people, I was actually growing. Imposter syndrome isn't a flaw — it's a signal. Here's how I learned to use it as fuel instead of letting it be a brake.</p>
+            <div class="blog-card-footer">
+              <span class="read-time"><i class="fas fa-clock"></i> 5 min</span>
+              <button class="blog-read-link" onclick="openBlogPost('imposter-syndrome')">Read More <i class="fas fa-arrow-right"></i></button>
+            </div>
+          </div>
+        </article>
+
+        <article class="blog-card" data-tags="inspiration">
+          <div class="blog-card-header" style="background:linear-gradient(135deg,#11998e,#38ef7d)">
+            <i class="fas fa-seedling blog-card-icon"></i>
+          </div>
+          <div class="blog-card-body">
+            <div class="blog-card-meta">
+              <span class="blog-tag inspiration">Inspiration</span>
+              <span class="blog-date-sm">Jan 2025</span>
+            </div>
+            <h3>Small Steps, Big Systems: How Consistency Beats Talent Every Time</h3>
+            <p>I didn't learn DevOps in a bootcamp or a weekend. I learned it in 30-minute sessions before work, during lunch breaks, and on Sundays. Consistency isn't glamorous — but it's the only thing that actually works.</p>
+            <div class="blog-card-footer">
+              <span class="read-time"><i class="fas fa-clock"></i> 5 min</span>
+              <button class="blog-read-link" onclick="openBlogPost('consistency')">Read More <i class="fas fa-arrow-right"></i></button>
+            </div>
+          </div>
+        </article>
+
+        <article class="blog-card" data-tags="inspiration career">
+          <div class="blog-card-header" style="background:linear-gradient(135deg,#0066cc,#00c9a7)">
+            <i class="fas fa-hands-holding-heart blog-card-icon"></i>
+          </div>
+          <div class="blog-card-body">
+            <div class="blog-card-meta">
+              <span class="blog-tag inspiration">Inspiration</span>
+              <span class="blog-date-sm">Nov 2024</span>
+            </div>
+            <h3>Dear African Woman in Tech: Your Presence Is Not a Coincidence</h3>
+            <p>A letter I wish someone had written to me five years ago. On representation, belonging, doubt, and why showing up — even imperfectly — matters more than you know for the women who come after you.</p>
+            <div class="blog-card-footer">
+              <span class="read-time"><i class="fas fa-clock"></i> 6 min</span>
+              <button class="blog-read-link" onclick="openBlogPost('african-women-tech')">Read More <i class="fas fa-arrow-right"></i></button>
+            </div>
+          </div>
+        </article>
+
+      </div>
+
+      <div id="blogEmpty" class="gallery-empty" style="display:none">
+        <i class="fas fa-newspaper"></i>
+        <p>No articles match your search. Try a different keyword or category.</p>
+      </div>
+
+      <!-- Write Post Button (Admin) -->
+      <div class="add-project-section" style="margin-top:3rem">
+        <button class="btn-outline" onclick="toggleWritePost()"><i class="fas fa-pen"></i> Write New Post</button>
+        <div class="add-project-form" id="writePostForm" style="display:none">
+          <h4>New Blog Post</h4>
+          <div class="form-row">
+            <div class="form-group">
+              <label>Title *</label>
+              <input type="text" id="postTitle" placeholder="Your article title..."/>
+            </div>
+            <div class="form-group">
+              <label>Category *</label>
+              <select id="postCategory">
+                <option value="devops">DevOps</option>
+                <option value="database">Database</option>
+                <option value="career">Career</option>
+                <option value="automation">Automation</option>
+                <option value="it">IT Admin</option>
+                <option value="fun">Fun &amp; Jokes</option>
+                <option value="inspiration">Inspiration</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label>Read Time (e.g. "5 min")</label>
+              <input type="text" id="postReadTime" placeholder="5 min"/>
+            </div>
+            <div class="form-group">
+              <label>Date</label>
+              <input type="month" id="postDate"/>
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Excerpt / Summary *</label>
+            <textarea id="postExcerpt" rows="3" placeholder="A short description of what this article covers..."></textarea>
+          </div>
+          <div class="form-group">
+            <label>Full Article Content</label>
+            <textarea id="postContent" rows="8" placeholder="Write the full article here. You can use basic HTML for formatting..."></textarea>
+          </div>
+          <div class="form-actions">
+            <button class="btn-primary" onclick="publishPost()"><i class="fas fa-upload"></i> Publish Post</button>
+            <button class="btn-outline" onclick="toggleWritePost()">Cancel</button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Blog Post Modal -->
+  <div class="modal-overlay" id="blogModal" style="display:none" onclick="closeBlogModal(event)">
+    <div class="modal-box blog-modal-box">
+      <button class="modal-close" onclick="closeBlogModal()"><i class="fas fa-times"></i></button>
+      <div id="blogModalContent"></div>
+    </div>
+  </div>
+
+  <!-- WhatsApp Float -->
+  <a href="https://wa.me/2348022915432?text=Hi%20Victoria%2C%20I%20saw%20your%20portfolio%20and%20I%27d%20like%20to%20discuss%20a%20project."
+     class="whatsapp-float" target="_blank" rel="noopener" aria-label="Chat on WhatsApp">
+    <i class="fab fa-whatsapp"></i>
+    <span class="whatsapp-tooltip">Chat on WhatsApp</span>
+  </a>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <span class="brand-initials">VAP</span>
+        <div><strong>Victoria Amarachi Philip</strong><p>IT Administrator &#8594; DevOps Professional</p></div>
+      </div>
+      <div class="footer-links">
+        <a href="index.html">Home</a><a href="projects.html">Projects</a>
+        <a href="media.html">Media</a><a href="blog.html">Blog</a><a href="index.html#contact">Contact</a>
+      </div>
+      <div class="footer-social">
+        <a href="https://www.linkedin.com/in/victoria-amarachi-7195b0108/" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+        <a href="mailto:victoriamarachi450@gmail.com"><i class="fas fa-envelope"></i></a>
+      </div>
+    </div>
+    <div class="footer-bottom"><p>&copy; 2025 Victoria Amarachi Philip. All rights reserved.</p></div>
+  </footer>
+
+  <button class="back-to-top" id="backToTop"><i class="fas fa-arrow-up"></i></button>
+  <script src="main.js"></script>
+</body>
+</html>
