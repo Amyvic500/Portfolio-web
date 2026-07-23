@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CV & Certificates | Victoria Amarachi Philip</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600&family=Space+Mono:wght@400;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <nav class="navbar" id="navbar">
+    <div class="nav-brand"><a href="index.html" class="brand-initials">VAP</a></div>
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="index.html" class="nav-link">Home</a></li>
+      <li><a href="index.html#about" class="nav-link">About</a></li>
+      <li><a href="skills-services.html" class="nav-link">Skills &amp; Services</a></li>
+      <li><a href="projects.html" class="nav-link">Projects</a></li>
+      <li><a href="media.html" class="nav-link">Media</a></li>
+      <li><a href="cv-certificates.html" class="nav-link active">CV &amp; Certificates</a></li>
+      <li><a href="index.html#learning" class="nav-link">Learning</a></li>
+      <li><a href="index.html#testimonials" class="nav-link">Reviews</a></li>
+      <li><a href="blog.html" class="nav-link">Blog</a></li>
+      <li><a href="index.html#contact" class="nav-link">Contact</a></li>
+    </ul>
+  </nav>
+
+  <div class="page-hero">
+    <div class="page-hero-inner">
+      <div class="section-label light">Credentials</div>
+      <h1 class="page-hero-title">CV &amp; <em>Certificates</em></h1>
+      <p class="page-hero-sub">My résumé, verified certifications, and course completions — all in one place.</p>
+    </div>
+  </div>
+
+  <section class="section section-accent" id="cv">
+    <div class="section-inner">
+
+      <div class="cv-section">
+        <div class="cv-info">
+          <p>Download my full CV to explore my complete work history, certifications, education, and technical skill set.</p>
+          <div class="cv-highlights">
+            <div class="cv-highlight"><i class="fas fa-briefcase"></i> 4+ Years IT Experience</div>
+            <div class="cv-highlight"><i class="fas fa-graduation-cap"></i> HND in Accounting + IT Certifications</div>
+            <div class="cv-highlight"><i class="fas fa-globe"></i> Open to Remote &amp; Hybrid Roles Worldwide</div>
+            <div class="cv-highlight"><i class="fas fa-certificate"></i> Multiple Technical Certifications</div>
+          </div>
+        </div>
+        <div class="cv-download">
+          <div class="cv-card">
+            <i class="fas fa-file-pdf cv-icon"></i>
+            <h4>Victoria Amarachi Philip</h4>
+            <p>DevOps | IT Admin | DBA | App Specialist</p>
+            <a href="/api/cv/download" class="btn-primary" id="cvDownloadBtn">
+              <i class="fas fa-download"></i> Download CV
+            </a>
+            <p id="cvMeta" style="font-size:.8rem;color:var(--muted);margin-top:.6rem"></p>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── CERTIFICATES GALLERY ── -->
+      <div class="certs-section" id="certificates">
+        <div class="certs-header">
+          <div>
+            <h3 class="certs-title">My <em>Certificates</em></h3>
+            <p class="certs-sub">Verified credentials and course completions. New ones are added here as I earn them.</p>
+          </div>
+          <a class="btn-outline" href="admin.html#certificates"><i class="fas fa-lock"></i> Admin: Add Certificate</a>
+        </div>
+
+        <div class="cert-filter-row" id="certFilterRow">
+          <button class="filter-btn active" data-filter="all" onclick="filterCerts(this)">All</button>
+          <button class="filter-btn" data-filter="cloud" onclick="filterCerts(this)">Cloud</button>
+          <button class="filter-btn" data-filter="devops" onclick="filterCerts(this)">DevOps</button>
+          <button class="filter-btn" data-filter="database" onclick="filterCerts(this)">Database</button>
+          <button class="filter-btn" data-filter="networking" onclick="filterCerts(this)">Networking</button>
+          <button class="filter-btn" data-filter="security" onclick="filterCerts(this)">Security</button>
+          <button class="filter-btn" data-filter="other" onclick="filterCerts(this)">Other</button>
+        </div>
+
+        <div class="certs-grid" id="certsGrid">
+          <!-- Populated dynamically from /api/certificates -->
+        </div>
+
+        <div id="certsEmpty" class="gallery-empty" style="display:none">
+          <i class="fas fa-certificate"></i>
+          <p>No certificates yet.</p>
+        </div>
+      </div>
+
+      <!-- Certificate View Modal -->
+      <div class="modal-overlay" id="certModal" style="display:none" onclick="closeCertModal(event)">
+        <div class="modal-box">
+          <button class="modal-close" onclick="closeCertModal()"><i class="fas fa-times"></i></button>
+          <div id="certModalContent"></div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <span class="brand-initials">VAP</span>
+        <div><strong>Victoria Amarachi Philip</strong><p>IT Administrator &#8594; DevOps Professional</p></div>
+      </div>
+      <div class="footer-links">
+        <a href="index.html">Home</a><a href="index.html#about">About</a><a href="skills-services.html">Skills &amp; Services</a>
+        <a href="projects.html">Projects</a><a href="media.html">Media</a><a href="cv-certificates.html">CV &amp; Certificates</a>
+        <a href="blog.html">Blog</a><a href="index.html#contact">Contact</a>
+      </div>
+      <div class="footer-social">
+        <a href="https://www.linkedin.com/in/victoria-amarachi-7195b0108/" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+        <a href="mailto:victoriamarachi450@gmail.com" aria-label="Email"><i class="fas fa-envelope"></i></a>
+      </div>
+    </div>
+    <div class="footer-bottom"><p>&copy; 2026 Victoria Amarachi Philip. All rights reserved.</p></div>
+  </footer>
+
+  <button class="back-to-top" id="backToTop" aria-label="Back to top"><i class="fas fa-arrow-up"></i></button>
+  <a href="https://wa.me/2348022915432?text=Hi%20Victoria%2C%20I%20saw%20your%20portfolio%20and%20I%27d%20like%20to%20discuss%20a%20project." class="whatsapp-float" target="_blank" rel="noopener" aria-label="Chat on WhatsApp"><i class="fab fa-whatsapp"></i><span class="whatsapp-tooltip">Chat on WhatsApp</span></a>
+
+  <script src="common.js"></script>
+  <script src="cv-certificates.js"></script>
+</body>
+</html>

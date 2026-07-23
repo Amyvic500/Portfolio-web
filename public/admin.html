@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin | Victoria Amarachi Philip</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600&family=Space+Mono:wght@400;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="admin.css" />
+</head>
+<body>
+
+  <!-- ── LOGIN GATE ── -->
+  <div id="loginGate" class="admin-login-wrap">
+    <div class="admin-login-box">
+      <div class="brand-initials" style="margin:0 auto 1rem;width:56px;height:56px;display:flex;align-items:center;justify-content:center;border-radius:50%;background:var(--dark-2)">VAP</div>
+      <h2>Admin Login</h2>
+      <p style="color:var(--muted);margin-bottom:1.2rem">Enter your admin password to manage messages, certificates, and projects.</p>
+      <input type="password" id="loginPassword" placeholder="Admin password" />
+      <button class="btn-primary btn-full" onclick="doLogin()"><i class="fas fa-right-to-bracket"></i> Log In</button>
+      <p id="loginError" style="color:var(--red);margin-top:.8rem;display:none"></p>
+      <a href="index.html" style="display:block;margin-top:1.2rem;text-align:center;color:var(--muted);font-size:.85rem">&larr; Back to site</a>
+    </div>
+  </div>
+
+  <!-- ── ADMIN DASHBOARD (hidden until logged in) ── -->
+  <div id="dashboard" style="display:none">
+
+    <nav class="navbar" id="navbar" style="position:sticky">
+      <div class="nav-brand"><a href="index.html" class="brand-initials">VAP</a></div>
+      <div style="margin-left:auto;display:flex;align-items:center;gap:1rem;padding-right:1rem">
+        <span id="unreadBadge" class="admin-badge" style="display:none"></span>
+        <button class="btn-outline" onclick="doLogout()"><i class="fas fa-right-from-bracket"></i> Log Out</button>
+      </div>
+    </nav>
+
+    <div class="page-hero">
+      <div class="page-hero-inner">
+        <div class="section-label light">Admin</div>
+        <h1 class="page-hero-title">Dashboard</h1>
+        <p class="page-hero-sub">Manage messages, certificates, projects, testimonials, and your CV — all in one place.</p>
+      </div>
+    </div>
+
+    <section class="section" id="adminMain">
+      <div class="section-inner">
+
+        <div class="admin-tabs" id="adminTabs">
+          <button class="admin-tab active" data-tab="messages" onclick="switchTab('messages')"><i class="fas fa-envelope"></i> Messages</button>
+          <button class="admin-tab" data-tab="certificates" onclick="switchTab('certificates')"><i class="fas fa-certificate"></i> Certificates</button>
+          <button class="admin-tab" data-tab="projects" onclick="switchTab('projects')"><i class="fas fa-diagram-project"></i> Projects</button>
+          <button class="admin-tab" data-tab="testimonials" onclick="switchTab('testimonials')"><i class="fas fa-comment-dots"></i> Testimonials</button>
+          <button class="admin-tab" data-tab="cv" onclick="switchTab('cv')"><i class="fas fa-file-pdf"></i> CV</button>
+          <button class="admin-tab" data-tab="profile" onclick="switchTab('profile')"><i class="fas fa-user-circle"></i> Profile</button>
+        </div>
+
+        <!-- MESSAGES TAB -->
+        <div class="admin-panel" id="tab-messages">
+          <div class="admin-panel-layout">
+            <div class="msg-list" id="msgList"><p style="color:var(--muted)">Loading messages…</p></div>
+            <div class="msg-detail" id="msgDetail">
+              <p style="color:var(--muted);padding:2rem;text-align:center">Select a message to view and reply.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- CERTIFICATES TAB -->
+        <div class="admin-panel" id="tab-certificates" style="display:none">
+          <h4 style="margin-bottom:1rem">Upload New Certificate</h4>
+          <form id="certForm" class="admin-form">
+            <div class="form-row">
+              <div class="form-group"><label>Certificate Name *</label><input type="text" id="certName" required/></div>
+              <div class="form-group"><label>Issuer</label><input type="text" id="certIssuer"/></div>
+            </div>
+            <div class="form-row">
+              <div class="form-group"><label>Date</label><input type="text" id="certDate" placeholder="e.g. Nov 2025"/></div>
+              <div class="form-group">
+                <label>Category</label>
+                <select id="certCategory">
+                  <option value="cloud">Cloud</option><option value="devops">DevOps</option>
+                  <option value="database">Database</option><option value="networking">Networking</option>
+                  <option value="security">Security</option><option value="development">Development</option>
+                  <option value="other" selected>Other</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label>Status</label>
+                <select id="certStatus"><option value="earned">Earned</option><option value="in-progress">In Progress</option></select>
+              </div>
+            </div>
+            <div class="form-group">
+              <label>File (JPG, PNG, or PDF — optional for "In Progress")</label>
+              <input type="file" id="certFile" accept="image/*,.pdf"/>
+            </div>
+            <button type="submit" class="btn-primary"><i class="fas fa-upload"></i> Upload Certificate</button>
+            <span id="certFormMsg" class="admin-form-msg"></span>
+          </form>
+          <hr style="margin:2rem 0;border-color:var(--border,#333)"/>
+          <div id="certAdminList"></div>
+        </div>
+
+        <!-- PROJECTS TAB -->
+        <div class="admin-panel" id="tab-projects" style="display:none">
+          <h4 style="margin-bottom:1rem">Add New Project</h4>
+          <form id="projectForm" class="admin-form">
+            <div class="form-row">
+              <div class="form-group"><label>Title *</label><input type="text" id="pTitle" required/></div>
+              <div class="form-group">
+                <label>Category *</label>
+                <select id="pCategory" required>
+                  <option value="healthcare">Healthcare</option><option value="network">IT & Network</option>
+                  <option value="database">Database</option><option value="automation">Automation</option>
+                  <option value="web">Web Apps</option><option value="dashboard">Dashboards</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-group"><label>Subtitle</label><input type="text" id="pSubtitle"/></div>
+            <div class="form-group"><label>Description *</label><textarea id="pDesc" rows="3" required></textarea></div>
+            <div class="form-group"><label>Stack (comma-separated)</label><input type="text" id="pStack" placeholder="PHP, MySQL, Docker"/></div>
+            <div class="form-group"><label>Outcomes (one per line)</label><textarea id="pOutcomes" rows="3"></textarea></div>
+            <div class="form-row">
+              <div class="form-group"><label>GitHub URL</label><input type="url" id="pGithub"/></div>
+              <div class="form-group"><label>Live Demo URL</label><input type="url" id="pDemo"/></div>
+            </div>
+            <label style="display:flex;align-items:center;gap:.5rem;margin-bottom:1rem"><input type="checkbox" id="pFeatured"/> Feature this project</label>
+            <button type="submit" class="btn-primary"><i class="fas fa-save"></i> Save Project</button>
+            <span id="projectFormMsg" class="admin-form-msg"></span>
+          </form>
+          <hr style="margin:2rem 0;border-color:var(--border,#333)"/>
+          <div id="projectAdminList"></div>
+        </div>
+
+        <!-- TESTIMONIALS TAB -->
+        <div class="admin-panel" id="tab-testimonials" style="display:none">
+          <div id="testimonialAdminList"><p style="color:var(--muted)">Loading…</p></div>
+        </div>
+
+        <!-- CV TAB -->
+        <div class="admin-panel" id="tab-cv" style="display:none">
+          <h4 style="margin-bottom:1rem">Replace CV</h4>
+          <form id="cvForm" class="admin-form">
+            <div class="form-group"><label>New CV File (PDF or Word)</label><input type="file" id="cvFile" accept=".pdf,.doc,.docx" required/></div>
+            <button type="submit" class="btn-primary"><i class="fas fa-upload"></i> Upload CV</button>
+            <span id="cvFormMsg" class="admin-form-msg"></span>
+          </form>
+          <p id="currentCvInfo" style="margin-top:1rem;color:var(--muted)"></p>
+        </div>
+
+        <!-- PROFILE TAB -->
+        <div class="admin-panel" id="tab-profile" style="display:none">
+          <h4 style="margin-bottom:1rem">Profile Photo</h4>
+          <div style="display:flex;align-items:center;gap:1.5rem;flex-wrap:wrap;margin-bottom:1.5rem">
+            <img id="profileImgPreview" src="" alt="Current profile photo" style="width:110px;height:110px;border-radius:50%;object-fit:cover;border:2px solid var(--border,#333);display:none"/>
+            <div id="profileImgPlaceholder" style="width:110px;height:110px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:var(--dark-2,#151515);color:var(--muted)">
+              <i class="fas fa-user" style="font-size:1.8rem"></i>
+            </div>
+            <div style="flex:1;min-width:220px">
+              <p style="color:var(--muted);font-size:.88rem;margin-bottom:.6rem">Upload a new photo to replace the one shown on the homepage. Square images work best (JPG, PNG, or WEBP, max 5MB).</p>
+              <form id="profileImgForm" class="admin-form" style="margin-bottom:0">
+                <div class="form-group">
+                  <input type="file" id="profileImgFile" accept="image/jpeg,image/png,image/webp" required/>
+                </div>
+                <button type="submit" class="btn-primary"><i class="fas fa-upload"></i> Update Photo</button>
+                <span id="profileImgFormMsg" class="admin-form-msg"></span>
+              </form>
+            </div>
+          </div>
+
+          <hr style="margin:2rem 0;border-color:var(--border,#333)"/>
+
+          <h4 style="margin-bottom:1rem">Hero Tagline</h4>
+          <form id="heroTaglineForm" class="admin-form">
+            <div class="form-group">
+              <label>Text shown under your name on the homepage</label>
+              <textarea id="heroTaglineText" rows="2" placeholder="Turning complex systems into elegant, automated, resilient infrastructures."></textarea>
+            </div>
+            <button type="submit" class="btn-primary"><i class="fas fa-save"></i> Save Tagline</button>
+            <span id="heroTaglineFormMsg" class="admin-form-msg"></span>
+          </form>
+        </div>
+
+      </div>
+    </section>
+  </div>
+
+  <script src="common.js"></script>
+  <script src="admin.js"></script>
+</body>
+</html>

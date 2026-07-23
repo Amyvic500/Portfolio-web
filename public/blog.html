@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Blog & Insights | Victoria Amarachi Philip</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600&family=Space+Mono:wght@400;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+
+  <nav class="navbar" id="navbar">
+    <div class="nav-brand"><a href="index.html" class="brand-initials">VAP</a></div>
+    <button class="nav-toggle" id="navToggle"><span></span><span></span><span></span></button>
+        <ul class="nav-links" id="navLinks">
+      <li><a href="index.html" class="nav-link">Home</a></li>
+      <li><a href="index.html#about" class="nav-link">About</a></li>
+      <li><a href="skills-services.html" class="nav-link">Skills &amp; Services</a></li>
+      <li><a href="projects.html" class="nav-link">Projects</a></li>
+      <li><a href="media.html" class="nav-link">Media</a></li>
+      <li><a href="cv-certificates.html" class="nav-link">CV &amp; Certificates</a></li>
+      <li><a href="index.html#learning" class="nav-link">Learning</a></li>
+      <li><a href="index.html#testimonials" class="nav-link">Reviews</a></li>
+      <li><a href="blog.html" class="nav-link active">Blog</a></li>
+      <li><a href="index.html#contact" class="nav-link">Contact</a></li>
+    </ul>
+  </nav>
+
+  <div class="page-hero">
+    <div class="page-hero-inner">
+      <div class="section-label light">Articles &amp; Insights</div>
+      <h1 class="page-hero-title">Blog &amp; <em>Writing</em></h1>
+      <p class="page-hero-sub">My thoughts on DevOps, IT, career transitions, tech in Africa — plus a good laugh and a dose of inspiration when you need it.</p>
+    </div>
+  </div>
+
+  <section class="section" id="blog-main">
+    <div class="section-inner">
+
+      <!-- Search + Filter -->
+      <div class="blog-controls">
+        <div class="blog-search-wrap">
+          <i class="fas fa-search"></i>
+          <input type="text" id="blogSearch" placeholder="Search articles..." oninput="filterBlogPosts()"/>
+        </div>
+        <div class="filter-bar" style="margin:0">
+          <button class="filter-btn active" data-filter="all" onclick="filterBlogByTag(this)">All</button>
+          <button class="filter-btn" data-filter="devops" onclick="filterBlogByTag(this)">DevOps</button>
+          <button class="filter-btn" data-filter="database" onclick="filterBlogByTag(this)">Database</button>
+          <button class="filter-btn" data-filter="career" onclick="filterBlogByTag(this)">Career</button>
+          <button class="filter-btn" data-filter="automation" onclick="filterBlogByTag(this)">Automation</button>
+          <button class="filter-btn" data-filter="it" onclick="filterBlogByTag(this)">IT Admin</button>
+          <button class="filter-btn" data-filter="fun" onclick="filterBlogByTag(this)">😄 Fun &amp; Jokes</button>
+          <button class="filter-btn" data-filter="inspiration" onclick="filterBlogByTag(this)">✨ Inspiration</button>
+        </div>
+      </div>
+
+      <!-- Featured Post -->
+      <div class="blog-empty-state" style="text-align:center;padding:3rem 1rem;color:var(--muted)">
+        <i class="fas fa-pen-nib" style="font-size:2rem;margin-bottom:1rem;color:var(--gold)"></i>
+        <p>No articles published yet — check back soon, or use "Write New Post" below to publish the first one.</p>
+      </div>
+
+      <!-- Blog Grid -->
+      <div class="blog-grid" id="blogGrid">
+        <!-- Populated by Victoria via "Write New Post" -->
+      </div>
+
+      <div id="blogEmpty" class="gallery-empty" style="display:none">
+        <i class="fas fa-newspaper"></i>
+        <p>No articles match your search. Try a different keyword or category.</p>
+      </div>
+
+      <!-- Write Post Button (Admin) -->
+      <div class="add-project-section" style="margin-top:3rem">
+        <button class="btn-outline" onclick="toggleWritePost()"><i class="fas fa-pen"></i> Write New Post</button>
+        <div class="add-project-form" id="writePostForm" style="display:none">
+          <h4>New Blog Post</h4>
+          <div class="form-row">
+            <div class="form-group">
+              <label>Title *</label>
+              <input type="text" id="postTitle" placeholder="Your article title..."/>
+            </div>
+            <div class="form-group">
+              <label>Category *</label>
+              <select id="postCategory">
+                <option value="devops">DevOps</option>
+                <option value="database">Database</option>
+                <option value="career">Career</option>
+                <option value="automation">Automation</option>
+                <option value="it">IT Admin</option>
+                <option value="fun">Fun &amp; Jokes</option>
+                <option value="inspiration">Inspiration</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label>Read Time (e.g. "5 min")</label>
+              <input type="text" id="postReadTime" placeholder="5 min"/>
+            </div>
+            <div class="form-group">
+              <label>Date</label>
+              <input type="month" id="postDate"/>
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Excerpt / Summary *</label>
+            <textarea id="postExcerpt" rows="3" placeholder="A short description of what this article covers..."></textarea>
+          </div>
+          <div class="form-group">
+            <label>Full Article Content</label>
+            <textarea id="postContent" rows="8" placeholder="Write the full article here. You can use basic HTML for formatting..."></textarea>
+          </div>
+          <div class="form-actions">
+            <button class="btn-primary" onclick="publishPost()"><i class="fas fa-upload"></i> Publish Post</button>
+            <button class="btn-outline" onclick="toggleWritePost()">Cancel</button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Blog Post Modal -->
+  <div class="modal-overlay" id="blogModal" style="display:none" onclick="closeBlogModal(event)">
+    <div class="modal-box blog-modal-box">
+      <button class="modal-close" onclick="closeBlogModal()"><i class="fas fa-times"></i></button>
+      <div id="blogModalContent"></div>
+    </div>
+  </div>
+
+  <!-- WhatsApp Float -->
+  <a href="https://wa.me/2348022915432?text=Hi%20Victoria%2C%20I%20saw%20your%20portfolio%20and%20I%27d%20like%20to%20discuss%20a%20project."
+     class="whatsapp-float" target="_blank" rel="noopener" aria-label="Chat on WhatsApp">
+    <i class="fab fa-whatsapp"></i>
+    <span class="whatsapp-tooltip">Chat on WhatsApp</span>
+  </a>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <span class="brand-initials">VAP</span>
+        <div><strong>Victoria Amarachi Philip</strong><p>IT Administrator &#8594; DevOps Professional</p></div>
+      </div>
+            <div class="footer-links">
+        <a href="index.html">Home</a><a href="index.html#about">About</a><a href="skills-services.html">Skills &amp; Services</a>
+        <a href="projects.html">Projects</a><a href="media.html">Media</a><a href="cv-certificates.html">CV &amp; Certificates</a>
+        <a href="blog.html">Blog</a><a href="index.html#contact">Contact</a>
+      </div>
+      <div class="footer-social">
+        <a href="https://www.linkedin.com/in/victoria-amarachi-7195b0108/" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+        <a href="mailto:victoriamarachi450@gmail.com"><i class="fas fa-envelope"></i></a>
+      </div>
+    </div>
+    <div class="footer-bottom"><p>&copy; 2025 Victoria Amarachi Philip. All rights reserved.</p></div>
+  </footer>
+
+  <button class="back-to-top" id="backToTop"><i class="fas fa-arrow-up"></i></button>
+  <script src="common.js"></script>
+  <script src="blog.js"></script>
+</body>
+</html>

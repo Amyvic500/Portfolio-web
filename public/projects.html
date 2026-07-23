@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Projects | Victoria Amarachi Philip</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600&family=Space+Mono:wght@400;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+
+  <nav class="navbar" id="navbar">
+    <div class="nav-brand">
+      <a href="index.html" class="brand-initials">VAP</a>
+    </div>
+    <button class="nav-toggle" id="navToggle"><span></span><span></span><span></span></button>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="index.html" class="nav-link">Home</a></li>
+      <li><a href="index.html#about" class="nav-link">About</a></li>
+      <li><a href="skills-services.html" class="nav-link">Skills &amp; Services</a></li>
+      <li><a href="projects.html" class="nav-link active">Projects</a></li>
+      <li><a href="media.html" class="nav-link">Media</a></li>
+      <li><a href="cv-certificates.html" class="nav-link">CV &amp; Certificates</a></li>
+      <li><a href="index.html#learning" class="nav-link">Learning</a></li>
+      <li><a href="index.html#testimonials" class="nav-link">Reviews</a></li>
+      <li><a href="blog.html" class="nav-link">Blog</a></li>
+      <li><a href="index.html#contact" class="nav-link">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- Page Header -->
+  <div class="page-hero">
+    <div class="page-hero-inner">
+      <div class="section-label light">Portfolio</div>
+      <h1 class="page-hero-title">My <em>Projects</em></h1>
+      <p class="page-hero-sub">A showcase of systems I've built, supported, and optimised across infrastructure, databases, automation, and applications.</p>
+    </div>
+  </div>
+
+  <section class="section" id="projects-main">
+    <div class="section-inner">
+
+      <!-- Filter Buttons -->
+      <div class="filter-bar" id="projectFilterBar">
+        <button class="filter-btn active" data-filter="all" onclick="filterProjects(this)">All Projects</button>
+        <button class="filter-btn" data-filter="healthcare" onclick="filterProjects(this)">Healthcare</button>
+        <button class="filter-btn" data-filter="network" onclick="filterProjects(this)">IT &amp; Network</button>
+        <button class="filter-btn" data-filter="database" onclick="filterProjects(this)">Database</button>
+        <button class="filter-btn" data-filter="automation" onclick="filterProjects(this)">Automation</button>
+        <button class="filter-btn" data-filter="web" onclick="filterProjects(this)">Web Apps</button>
+        <button class="filter-btn" data-filter="dashboard" onclick="filterProjects(this)">Dashboards</button>
+      </div>
+
+      <div id="projectsEmpty" class="gallery-empty" style="display:none">
+        <i class="fas fa-diagram-project"></i><p>No projects yet.</p>
+      </div>
+
+      <div class="projects-grid" id="projectsGrid">
+        <!-- Populated dynamically from /api/projects -->
+      </div><!-- /projects-grid -->
+
+      <div class="add-project-section">
+        <a href="admin.html#projects" class="btn-outline"><i class="fas fa-lock"></i> Admin: Add New Project</a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Media Modal -->
+  <div class="modal-overlay" id="mediaModal" style="display:none" onclick="closeModal(event)">
+    <div class="modal-box">
+      <button class="modal-close" onclick="closeMediaModal()"><i class="fas fa-times"></i></button>
+      <h3 id="modalTitle">Project Media</h3>
+      <div id="modalContent"></div>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <span class="brand-initials">VAP</span>
+        <div><strong>Victoria Amarachi Philip</strong><p>IT Administrator → DevOps Professional</p></div>
+      </div>
+      <div class="footer-links">
+        <a href="index.html">Home</a><a href="index.html#about">About</a><a href="skills-services.html">Skills &amp; Services</a>
+        <a href="projects.html">Projects</a><a href="media.html">Media</a><a href="cv-certificates.html">CV &amp; Certificates</a>
+        <a href="blog.html">Blog</a><a href="index.html#contact">Contact</a>
+      </div>
+      <div class="footer-social">
+        <a href="https://www.linkedin.com/in/victoria-amarachi-7195b0108/" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+        <a href="mailto:victoriamarachi450@gmail.com"><i class="fas fa-envelope"></i></a>
+      </div>
+    </div>
+    <div class="footer-bottom"><p>&copy; 2025 Victoria Amarachi Philip. All rights reserved.</p></div>
+  </footer>
+
+  <button class="back-to-top" id="backToTop"><i class="fas fa-arrow-up"></i></button>
+  <a href="https://wa.me/2348022915432?text=Hi%20Victoria%2C%20I%20saw%20your%20portfolio%20and%20I%27d%20like%20to%20discuss%20a%20project." class="whatsapp-float" target="_blank" rel="noopener" aria-label="Chat on WhatsApp"><i class="fab fa-whatsapp"></i><span class="whatsapp-tooltip">Chat on WhatsApp</span></a>
+  <script src="common.js"></script>
+  <script src="projects.js"></script>
+</body>
+</html>
