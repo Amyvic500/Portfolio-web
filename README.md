@@ -7,16 +7,14 @@ dashboard, and real email sending/receiving through the contact form.
 JWT + cookies (admin auth). Frontend is plain HTML/CSS/JS — no framework.
 
 **Structure:**
-```
-public/    → the website (index, skills-services, projects, cv-certificates, media, blog, admin)
-server/    → Express API, MySQL connection, routes, file uploads
-```
+- `public/` → the website (index, skills-services, projects, cv-certificates, media, blog, admin)
+- `server/` → Express API, MySQL connection, routes, file uploads
 
 ---
 
 ## Run it locally
 
-1. Start MySQL (XAMPP → MySQL, as you already use for itforms), then create the database:
+1. Start MySQL (XAMPP → MySQL), then create the database:
    ```sql
    CREATE DATABASE portfolio_db;
    ```
@@ -46,7 +44,7 @@ Tables are created automatically on first run — no manual SQL needed beyond st
    ```
    SMTP_USER=your-brevo-login@example.com
    SMTP_PASS=your-smtp-key
-   OWNER_EMAIL=victoriamarachi450@gmail.com
+   OWNER_EMAIL=your-email@example.com
    ```
 
 Without this, messages still save and show in the admin inbox — they just won't email you.
@@ -55,12 +53,15 @@ Without this, messages still save and show in the admin inbox — they just won'
 
 ## Deploy live
 
-1. **MySQL** — Railway.app → New Project → Provision MySQL → copy `MYSQLHOST`, `MYSQLPORT`,
-   `MYSQLUSER`, `MYSQLPASSWORD`, `MYSQLDATABASE` from the Variables tab.
-2. **App** — Render.com → New → Web Service → connect this repo.
+1. **MySQL** — Railway.app → New Project → Provision MySQL → copy the host, port, user,
+   password and database name from the Variables tab. Use the **public** (TCP proxy) host and
+   port, since Render is outside Railway's network.
+2. **App** — Render.com → New → Web Service → connect this repo and choose the branch to deploy.
    - Build: `npm install` · Start: `npm start`
    - Add all `.env` variables under Environment, using the Railway MySQL values above.
-   - Add a Disk mounted at `/opt/render/project/src/server/uploads` (keeps certs/CV across redeploys).
+   - Optional: add a Disk mounted at `/opt/render/project/src/server/uploads` to keep uploaded
+     certificates and CV across redeploys. Disks need a paid Render instance — on the free tier,
+     files uploaded through the admin page are lost on redeploy.
 3. Deploy, then run once from Render's Shell tab: `node server/seed.js`
 4. Optional: Render → Settings → Custom Domain, to point your own domain at it.
 
@@ -71,3 +72,10 @@ Without this, messages still save and show in the admin inbox — they just won'
 - **Messages** — reply from here; sends a real email to the client.
 - **Certificates / Projects / CV** — add or replace any time.
 - **Testimonials** — approve before they go public.
+
+---
+
+## Notes
+
+- Change `ADMIN_PASSWORD` and `JWT_SECRET` before deploying publicly.
+- Never commit your real `.env` — only `.env.example` is safe to push to GitHub.
