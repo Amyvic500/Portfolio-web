@@ -1,37 +1,45 @@
-const nodemailer = require('nodemailer');
 const cfg = require('./config');
 
-let transporter = null;
+const BREVO_API_URL = 'https://api.brevo.com/v3/smtp/email';
 
-function getTransporter() {
-  if (!cfg.SMTP_USER || !cfg.SMTP_PASS) {
-    return null; // Not configured yet — caller should handle gracefully
-  }
-  if (!transporter) {
-    transporter = nodemailer.createTransport({
-      host: cfg.SMTP_HOST,
-      port: cfg.SMTP_PORT,
-      secure: false, // Brevo uses STARTTLS on 587
-      auth: { user: cfg.SMTP_USER, pass: cfg.SMTP_PASS },
-    });
-  }
-  return transporter;
-}
-
+// Sends email via Brevo's HTTP API (port 443) instead of SMTP (port 587).
+// Many free-tier hosts block outbound SMTP to prevent spam relay abuse, but
+// HTTPS is never blocked since it's how every web request works — this is
+// the reliable path for sending from Render, Railway, or similar platforms.
 async function sendMail({ to, subject, text, html, replyTo }) {
-  const t = getTransporter();
-  if (!t) {
-    console.warn('[mailer] SMTP not configured — skipping send. Set SMTP_USER/SMTP_PASS in .env');
+  if (!cfg.BREVO_API_KEY) {
+    console.warn('[mailer] BREVO_API_KEY not set — skipping send. Add it to your .env/host environment variables.');
     return { skipped: true };
   }
-  return t.sendMail({
-    from: cfg.SMTP_FROM,
-    to,
+
+  const body = {
+    sender: { name: cfg.SENDER_NAME, email: cfg.SENDER_EMAIL },
+    to: [{ email: to }],
     subject,
-    text,
-    html,
-    replyTo,
+    textContent: text,
+    htmlContent: html || `<p>${(text || '').replace(/\n/g, '<br>')}</p>`,
+  };
+
+  if (replyTo) {
+    body.replyTo = { email: replyTo };
+  }
+
+  const res = await fetch(BREVO_API_URL, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      Accept: 'application/json',
+      'api-key': cfg.BREVO_API_KEY,
+    },
+    body: JSON.stringify(body),
   });
+
+  if (!res.ok) {
+    const errText = await res.text().catch(() => '');
+    throw new Error(`Brevo API error (${res.status}): ${errText}`);
+  }
+
+  return res.json();
 }
 
 module.exports = { sendMail };

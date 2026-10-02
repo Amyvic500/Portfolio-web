@@ -10,12 +10,13 @@ module.exports = {
   DB_PASSWORD: process.env.DB_PASSWORD || '',
   DB_NAME: process.env.DB_NAME || 'portfolio_db',
 
-  ADMIN_PASSWORD: process.env.ADMIN_PASSWORD || 'changeme123',
-  JWT_SECRET: process.env.JWT_SECRET || 'replace-this-secret-in-env',
+  ADMIN_PASSWORD: process.env.ADMIN_PASSWORD || 'Portfolio2026',
+  JWT_SECRET: process.env.JWT_SECRET || 'QA9xTGpgPOZiv75FXDeR4YHyNw1ILUbsVndc6KE0',
   OWNER_EMAIL: process.env.OWNER_EMAIL || 'victoriamarachi450@gmail.com',
-  SMTP_HOST: process.env.SMTP_HOST || 'smtp-relay.brevo.com',
-  SMTP_PORT: Number(process.env.SMTP_PORT || 587),
-  SMTP_USER: process.env.SMTP_USER || '',
-  SMTP_PASS: process.env.SMTP_PASS || '',
-  SMTP_FROM: process.env.SMTP_FROM || 'Victoria Amarachi Portfolio <no-reply@example.com>',
+
+  // Brevo HTTP API (sends over HTTPS/443 — not blocked by free-tier host firewalls,
+  // unlike SMTP on port 587)
+  BREVO_API_KEY: process.env.BREVO_API_KEY || '',
+  SENDER_EMAIL: process.env.SENDER_EMAIL || 'victoriamarachi450@gmail.com',
+  SENDER_NAME: process.env.SENDER_NAME || 'Victoria Amarachi Philip',
 };
